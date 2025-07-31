@@ -35,7 +35,7 @@ int main(){
             break;
         }
         else if(sum < M) {
-            if(ans <= sum) ans = max(ans, mid);
+            ans = mid;
 
             l = mid + 1;
         }
