@@ -1,25 +1,39 @@
 import java.util.*;
 
 class Solution {
-    public int[] solution(String[] name, int[] yearning, String[][] photo) {
-        int[] answer = new int[photo.length] ;
+    public int solution(int N, int number) {
+        int answer = 0;
         
-        HashMap<String,Integer> map = new HashMap<>();
+        List<Set<Integer>> dp = new ArrayList<>();
         
-        for(int i=0; i<name.length; i++){
-            map.put(name[i], yearning[i]);
+        for(int i=0; i<=8; i++){
+            dp.add(new HashSet<>());
         }
         
-        
-        for(int i=0; i<photo.length; i++){
-            int sum = 0;
-            for(int j=0; j<photo[i].length; j++){
-                sum+= map.getOrDefault(photo[i][j],0);
+       
+        for(int i=1; i<=8; i++){
+            String repeat = String.valueOf(N).repeat(i);
+            int num = Integer.parseInt(repeat);
+            dp.get(i).add(num);
+            
+            for(int j=1; j<i; j++){
+              for(int a : dp.get(j)){
+                  for(int b : dp.get(i-j)){
+                      dp.get(i).add(a+b);
+                      dp.get(i).add(a-b);
+                      dp.get(i).add(a*b);
+                      if(b!=0) dp.get(i).add(a/b);
+                  }   
+              } 
+          }
+            
+            //System.out.println(dp);
+            if(dp.get(i).contains(number)){
+                return answer = i;
             }
-            answer[i] = sum;
+           
         }
-
-        return answer;
         
+        return -1;
     }
 }
