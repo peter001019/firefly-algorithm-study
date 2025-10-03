@@ -28,8 +28,8 @@ vector<int> solution(vector<int> fees, vector<string> records) {
     }
     
     //주차 요금 계산 및 저장    
-    for(auto it: cars){
-        vector<string>& v = it.second;
+    for(auto kv: cars){
+        vector<string>& v = kv.second;
         
         //출차 내역이 없는 차량은 23:59 출차 기록 삽입
         if(v.size() % 2 == 1) v.push_back("23:59");
