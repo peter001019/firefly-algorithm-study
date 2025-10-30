@@ -41,11 +41,11 @@ void truck(char target){
             int ny = y + dy[i];
             
             if(!in_range(nx, ny) || visited[nx][ny]) continue;
-            if(board[nx][ny] != ' ' && board[nx][ny] != target) continue;
+            if(board[nx][ny] != 0 && board[nx][ny] != target) continue;
             
             visited[nx][ny] = 1;
-            if(board[nx][ny] == ' ') q.push({nx, ny});
-            else board[nx][ny] = ' ';
+            if(board[nx][ny] == 0) q.push({nx, ny});
+            else board[nx][ny] = 0;
         }
     }
     
