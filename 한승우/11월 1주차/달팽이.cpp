@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+int mat[1000][1000];
+
+void solve() {
+    int r, c;
+    int n, num; 
+    cin >> n >> num;
+
+    int cnt = pow(n, 2);
+    int left = 1, right = n, top = 1, bottom = n;
+    while(left <= right && top <= bottom){
+        //top -> bottom
+        for(int i = top; i <= bottom; i++)
+            mat[i][left] = cnt--;
+        left++;
+
+        //left -> right
+        for(int i = left; i <= right; i++)
+            mat[bottom][i] = cnt--;
+        bottom--;
+
+        if(top <= bottom){
+            //bottom -> top
+            for(int i = bottom; i >= top; i--)
+                mat[i][right] = cnt--;
+            right--;
+        }
+
+        if(left <= right){
+            //right -> left
+            for(int i = right; i >= left; i--)
+                mat[top][i] = cnt--;
+            top++;
+        }
+    }
+
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= n; j++){
+            cout << mat[i][j] << ' ';
+            if(mat[i][j] == num) {
+                r = i; c = j;
+            }
+        }
+        cout << '\n';
+    }
+
+    cout << r << ' ' << c;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int Tc = 1;
+    // cin >> Tc;
+    while (Tc--) solve();
+    return 0;
+}
