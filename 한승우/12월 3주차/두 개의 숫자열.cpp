@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 	cin >> T;
 
 	for(test_case = 1; test_case <= T; ++test_case)
-	{d
+	{
         cin >> n >> m;
         if(n > m) 
 	}
