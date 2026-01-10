@@ -92,19 +92,12 @@ int main(int argc, char** argv)
             for(int j = 0; j < n; j++){
                 if(mat[i][j] != '*') continue;
 
-                if(i > 0){
-                    if(j > 0) cnt[i - 1][j - 1]++;
-                    cnt[i - 1][j]++;
-                    if(j < n - 1) cnt[i - 1][j + 1]++;
-                }
+                for(int k = 0; k < 8; k++){
+                    int nx = i + dx[k];
+                    int ny = j + dy[k];
 
-                if(j > 0) cnt[i][j - 1]++;
-                if(j < n - 1) cnt[i][j + 1]++;
-
-                if(i < n - 1){
-                    if(j > 0) cnt[i + 1][j - 1]++;
-                    cnt[i + 1][j]++;
-                    if(j < n - 1) cnt[i + 1][j + 1]++;
+                    if(!in_range(nx, ny) || mat[nx][ny] == '*') continue;
+                    cnt[nx][ny]++;
                 }
             }
         }
